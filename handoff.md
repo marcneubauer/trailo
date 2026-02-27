@@ -14,7 +14,7 @@ Trailo is a self-hosted personal Trello clone built with Fastify 5 (backend), Sv
 | 1 | 8 specification documents in `specs/` | **Done** |
 | 2 | Database schema + migrations + fractional indexing | **Done** |
 | 3a | Password auth (argon2 + sessions) | **Done** |
-| 3b | Passkey auth (@simplewebauthn) | **Not started** (optional) |
+| 3b | Passkey auth (@simplewebauthn) | **Done** |
 | 4 | Board/List/Card CRUD API + integration tests | **Done** |
 | 5 | SvelteKit pages + API integration | **Done** |
 | 6 | Drag-and-drop (svelte-dnd-action) | **Done** |
@@ -23,7 +23,7 @@ Trailo is a self-hosted personal Trello clone built with Fastify 5 (backend), Sv
 
 ### Test Counts
 
-- **58 Vitest tests passing** (16 shared + 42 API integration)
+- **70 Vitest tests passing** (16 shared + 54 API integration)
 - **20 Playwright E2E tests passing** (5 auth + 6 boards + 9 lists/cards)
 
 ---
@@ -37,12 +37,6 @@ Trailo is a self-hosted personal Trello clone built with Fastify 5 (backend), Sv
 ---
 
 ## Remaining Work (Optional Enhancements)
-
-### Phase 3b: Passkey Auth
-- @simplewebauthn/server and @simplewebauthn/browser are already installed
-- Need routes: passkey register options/verify, login options/verify
-- Integration tests with mocked WebAuthn ceremony
-- Frontend UI for passkey registration in settings, passkey login button
 
 ### Other Ideas
 - Card descriptions (backend supports it, frontend edit UI not implemented)
@@ -74,16 +68,17 @@ Trailo is a self-hosted personal Trello clone built with Fastify 5 (backend), Sv
 - `src/db/schema/` — 6 Drizzle schema files
 - `src/plugins/db.ts` — DB plugin (creates DB, runs migrations)
 - `src/plugins/auth.ts` — Auth plugin (session parsing, `requireAuth`)
-- `src/services/` — auth, board, list, card services
-- `src/routes/` — auth, boards, lists, cards route handlers
-- `tests/integration/` — 4 test suites (auth, boards, lists, cards)
+- `src/services/` — auth, passkey, board, list, card services
+- `src/routes/` — auth, passkeys, boards, lists, cards route handlers
+- `tests/integration/` — 5 test suites (auth, passkeys, boards, lists, cards)
 
 ### Web (`packages/web/src/`)
 - `hooks.server.ts` — Auth check + API proxy (with Set-Cookie fix)
 - `lib/api.ts` — Typed fetch wrapper
 - `routes/+layout.svelte` — Nav with auth-aware username/logout
-- `routes/login/+page.svelte` — Login form
+- `routes/login/+page.svelte` — Login form with passkey login button
 - `routes/register/+page.svelte` — Register form
+- `routes/settings/+page.svelte` — Passkey management (register, list, delete)
 - `routes/boards/+page.svelte` — Board grid with create/delete
 - `routes/boards/[boardId]/+page.svelte` — Full kanban board with DnD
 

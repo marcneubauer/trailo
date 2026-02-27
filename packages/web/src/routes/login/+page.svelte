@@ -1,11 +1,19 @@
 <script lang="ts">
   import { api, ApiError } from '$lib/api';
   import { invalidateAll } from '$app/navigation';
+  import { onMount } from 'svelte';
+  import { browserSupportsWebAuthn, startAuthentication } from '@simplewebauthn/browser';
 
   let email = $state('');
   let password = $state('');
   let error = $state('');
   let loading = $state(false);
+  let passkeyLoading = $state(false);
+  let supportsPasskeys = $state(false);
+
+  onMount(() => {
+    supportsPasskeys = browserSupportsWebAuthn();
+  });
 
   async function handleSubmit(e: Event) {
     e.preventDefault();
@@ -27,6 +35,37 @@
       }
     } finally {
       loading = false;
+    }
+  }
+
+  async function handlePasskeyLogin() {
+    error = '';
+    passkeyLoading = true;
+
+    try {
+      const { options } = await api<{ options: any }>('/passkeys/login/options', {
+        method: 'POST',
+      });
+
+      const authResponse = await startAuthentication({ optionsJSON: options });
+
+      await api('/passkeys/login/verify', {
+        method: 'POST',
+        body: JSON.stringify(authResponse),
+      });
+
+      await invalidateAll();
+      window.location.href = '/boards';
+    } catch (err) {
+      if (err instanceof ApiError) {
+        error = err.message;
+      } else if (err instanceof Error && err.name === 'NotAllowedError') {
+        error = 'Passkey authentication was cancelled';
+      } else {
+        error = 'Passkey authentication failed';
+      }
+    } finally {
+      passkeyLoading = false;
     }
   }
 </script>
@@ -54,6 +93,20 @@
         {loading ? 'Signing in...' : 'Sign in'}
       </button>
     </form>
+
+    {#if supportsPasskeys}
+      <div class="divider">
+        <span>or</span>
+      </div>
+
+      <button
+        class="passkey-btn"
+        onclick={handlePasskeyLogin}
+        disabled={passkeyLoading}
+      >
+        {passkeyLoading ? 'Authenticating...' : 'Sign in with Passkey'}
+      </button>
+    {/if}
 
     <p class="auth-link">
       Don't have an account? <a href="/register">Create one</a>
@@ -140,6 +193,38 @@
     color: var(--color-danger);
     border-radius: var(--radius-sm);
     font-size: 13px;
+  }
+
+  .divider {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 20px 0;
+    color: var(--color-text-subtle);
+    font-size: 13px;
+  }
+
+  .divider::before,
+  .divider::after {
+    content: '';
+    flex: 1;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .passkey-btn {
+    width: 100%;
+    padding: 10px;
+    background: var(--color-surface);
+    color: var(--color-text);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+  }
+
+  .passkey-btn:hover {
+    background: var(--color-bg);
   }
 
   .auth-link {

@@ -26,7 +26,7 @@ export async function loginUser(page: Page, user: ReturnType<typeof uniqueUser>)
   await page.goto('/login', { waitUntil: 'networkidle' });
   await page.getByLabel('Email').fill(user.email);
   await page.getByLabel('Password').fill(user.password);
-  await page.getByRole('button', { name: 'Sign in' }).click();
+  await page.getByRole('button', { name: 'Sign in', exact: true }).click();
   await page.waitForURL('/boards', { waitUntil: 'load' });
 }
 

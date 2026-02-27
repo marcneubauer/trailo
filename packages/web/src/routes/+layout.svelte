@@ -15,6 +15,7 @@
     <a href="/boards" class="nav-brand">Trailo</a>
     <div class="nav-right">
       <span class="nav-user">{data.user.username}</span>
+      <a href="/settings" class="nav-link">Settings</a>
       <button class="nav-logout" onclick={logout}>Log out</button>
     </div>
   </nav>
@@ -51,6 +52,17 @@
   .nav-user {
     font-size: 14px;
     opacity: 0.9;
+  }
+
+  .nav-link {
+    font-size: 13px;
+    color: white;
+    text-decoration: none;
+    opacity: 0.9;
+  }
+
+  .nav-link:hover {
+    opacity: 1;
   }
 
   .nav-logout {

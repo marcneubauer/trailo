@@ -1,6 +1,7 @@
 import fp from 'fastify-plugin';
 import type { FastifyRequest, FastifyReply } from 'fastify';
 import { AuthService } from '../services/auth.service.js';
+import { PasskeyService } from '../services/passkey.service.js';
 
 interface AuthUser {
   id: string;
@@ -14,6 +15,7 @@ declare module 'fastify' {
   }
   interface FastifyInstance {
     authService: AuthService;
+    passkeyService: PasskeyService;
     requireAuth: (request: FastifyRequest, reply: FastifyReply) => Promise<void>;
   }
 }
@@ -26,6 +28,9 @@ export { COOKIE_NAME, SESSION_MAX_AGE };
 export default fp(async (fastify) => {
   const authService = new AuthService(fastify.db);
   fastify.decorate('authService', authService);
+
+  const passkeyService = new PasskeyService(fastify.db);
+  fastify.decorate('passkeyService', passkeyService);
 
   fastify.decorateRequest('user', null);
 

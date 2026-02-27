@@ -60,7 +60,7 @@ test.describe('Authentication', () => {
     // Try wrong password
     await page.getByLabel('Email').fill(user.email);
     await page.getByLabel('Password').fill('WrongPassword123!');
-    await page.getByRole('button', { name: 'Sign in' }).click();
+    await page.getByRole('button', { name: 'Sign in', exact: true }).click();
 
     await expect(page.locator('.error')).toBeVisible();
   });
