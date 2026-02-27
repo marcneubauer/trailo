@@ -1,0 +1,29 @@
+FROM node:22-slim AS base
+RUN corepack enable pnpm
+
+FROM base AS deps
+WORKDIR /app
+COPY pnpm-workspace.yaml package.json pnpm-lock.yaml .npmrc ./
+COPY packages/shared/package.json packages/shared/
+COPY packages/web/package.json packages/web/
+RUN pnpm install --frozen-lockfile
+
+FROM base AS build
+WORKDIR /app
+COPY --from=deps /app/node_modules ./node_modules
+COPY --from=deps /app/packages/shared/node_modules ./packages/shared/node_modules
+COPY --from=deps /app/packages/web/node_modules ./packages/web/node_modules
+COPY pnpm-workspace.yaml package.json pnpm-lock.yaml .npmrc tsconfig.base.json ./
+COPY packages/shared/ packages/shared/
+COPY packages/web/ packages/web/
+RUN pnpm --filter @trailo/web build
+
+FROM node:22-slim AS runner
+WORKDIR /app
+COPY --from=build /app/packages/web/build ./build
+COPY --from=deps /app/packages/web/node_modules ./node_modules
+COPY --from=build /app/packages/web/package.json ./package.json
+
+ENV NODE_ENV=production
+EXPOSE 3000
+CMD ["node", "build"]
