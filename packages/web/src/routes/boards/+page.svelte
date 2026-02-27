@@ -60,7 +60,7 @@
         <span class="board-name">{board.name}</span>
         <button
           class="board-delete"
-          onclick|stopPropagation|preventDefault={() => deleteBoard(board.id, board.name)}
+          onclick={(e) => { e.stopPropagation(); e.preventDefault(); deleteBoard(board.id, board.name); }}
           aria-label="Delete board"
         >&times;</button>
       </a>
