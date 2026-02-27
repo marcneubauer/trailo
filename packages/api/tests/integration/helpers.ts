@@ -57,3 +57,48 @@ export async function loginUser(
 export function authHeader(sessionCookie: string) {
   return { cookie: `trailo_session=${sessionCookie}` };
 }
+
+export async function createBoard(
+  app: FastifyInstance,
+  sessionCookie: string,
+  name = 'Test Board',
+) {
+  const response = await app.inject({
+    method: 'POST',
+    url: '/api/v1/boards',
+    headers: authHeader(sessionCookie),
+    payload: { name },
+  });
+  return { response, body: JSON.parse(response.body) };
+}
+
+export async function createList(
+  app: FastifyInstance,
+  sessionCookie: string,
+  boardId: string,
+  name = 'Test List',
+) {
+  const response = await app.inject({
+    method: 'POST',
+    url: `/api/v1/boards/${boardId}/lists`,
+    headers: authHeader(sessionCookie),
+    payload: { name },
+  });
+  return { response, body: JSON.parse(response.body) };
+}
+
+export async function createCard(
+  app: FastifyInstance,
+  sessionCookie: string,
+  listId: string,
+  title = 'Test Card',
+  description?: string,
+) {
+  const response = await app.inject({
+    method: 'POST',
+    url: `/api/v1/lists/${listId}/cards`,
+    headers: authHeader(sessionCookie),
+    payload: { title, description },
+  });
+  return { response, body: JSON.parse(response.body) };
+}
