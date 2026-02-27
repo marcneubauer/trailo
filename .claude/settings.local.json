@@ -27,7 +27,10 @@
       "Bash(git -C:*)",
       "Bash(/bin/bash -c 'export PATH=\"\"/Users/mneubauer/.nvm/versions/node/v22.14.0/bin:$PATH\"\" && pnpm ls fastify-plugin --filter @trailo/api 2>&1')",
       "Bash(/bin/bash -c 'export PATH=\"\"/Users/mneubauer/.nvm/versions/node/v22.14.0/bin:$PATH\"\" && npx vitest run --project api 2>&1')",
-      "Bash(/bin/bash -c 'export PATH=\"\"/Users/mneubauer/.nvm/versions/node/v22.14.0/bin:$PATH\"\" && npx vitest run --project shared --project api 2>&1')"
+      "Bash(/bin/bash -c 'export PATH=\"\"/Users/mneubauer/.nvm/versions/node/v22.14.0/bin:$PATH\"\" && npx vitest run --project shared --project api 2>&1')",
+      "Bash(/bin/bash -c 'export PATH=\"\"/Users/mneubauer/.nvm/versions/node/v22.14.0/bin:$PATH\"\" && pnpm --filter @trailo/web build 2>&1')",
+      "Bash(/bin/bash -c 'export PATH=\"\"/Users/mneubauer/.nvm/versions/node/v22.14.0/bin:$PATH\"\" && git status')",
+      "Bash(/bin/bash -c 'export PATH=\"\"/Users/mneubauer/.nvm/versions/node/v22.14.0/bin:$PATH\"\" && git log --oneline -5')"
     ]
   }
 }
