@@ -1,0 +1,34 @@
+{
+  "name": "trailo",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "pnpm -r --parallel dev",
+    "dev:api": "pnpm --filter @trailo/api dev",
+    "dev:web": "pnpm --filter @trailo/web dev",
+    "build": "pnpm -r build",
+    "test": "vitest",
+    "test:unit": "vitest run",
+    "test:e2e": "playwright test",
+    "lint": "eslint packages/",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "db:generate": "pnpm --filter @trailo/api db:generate",
+    "db:migrate": "pnpm --filter @trailo/api db:migrate",
+    "typecheck": "pnpm -r typecheck"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.39.0",
+    "@playwright/test": "^1.58.0",
+    "eslint": "^9.39.0",
+    "prettier": "^3.8.0",
+    "prettier-plugin-svelte": "^3.3.0",
+    "typescript": "~5.8.0",
+    "typescript-eslint": "^8.56.0",
+    "vitest": "^3.2.0"
+  },
+  "engines": {
+    "node": ">=20.0.0",
+    "pnpm": ">=9.0.0"
+  }
+}
