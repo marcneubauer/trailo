@@ -1,7 +1,78 @@
-<script>
+<script lang="ts">
   import '../app.css';
+  import { api } from '$lib/api';
+  import { goto } from '$app/navigation';
 
-  let { children } = $props();
+  let { data, children } = $props();
+
+  async function logout() {
+    await api('/auth/logout', { method: 'POST' });
+    goto('/login');
+  }
 </script>
 
-{@render children()}
+{#if data.user}
+  <nav class="nav">
+    <a href="/boards" class="nav-brand">Trailo</a>
+    <div class="nav-right">
+      <span class="nav-user">{data.user.username}</span>
+      <button class="nav-logout" onclick={logout}>Log out</button>
+    </div>
+  </nav>
+{/if}
+
+<main class:has-nav={!!data.user}>
+  {@render children()}
+</main>
+
+<style>
+  .nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 16px;
+    height: 48px;
+    background-color: var(--color-primary);
+    color: white;
+  }
+
+  .nav-brand {
+    font-size: 18px;
+    font-weight: 700;
+    color: white;
+    text-decoration: none;
+  }
+
+  .nav-right {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .nav-user {
+    font-size: 14px;
+    opacity: 0.9;
+  }
+
+  .nav-logout {
+    padding: 4px 12px;
+    border: none;
+    border-radius: var(--radius-sm);
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    cursor: pointer;
+    font-size: 13px;
+  }
+
+  .nav-logout:hover {
+    background: rgba(255, 255, 255, 0.3);
+  }
+
+  main {
+    height: 100vh;
+  }
+
+  main.has-nav {
+    height: calc(100vh - 48px);
+  }
+</style>
