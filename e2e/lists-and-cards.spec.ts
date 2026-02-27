@@ -24,8 +24,7 @@ test.describe('Lists and Cards', () => {
     await page.getByRole('button', { name: 'Add List' }).click();
     await expect(page.locator('.list-name', { hasText: 'To Do' })).toBeVisible();
 
-    // Add second list
-    await page.getByText('+ Add another list').click();
+    // Form stays open after adding, just type the next name
     await page.getByPlaceholder('Enter list name...').fill('In Progress');
     await page.getByRole('button', { name: 'Add List' }).click();
     await expect(page.locator('.list-name', { hasText: 'In Progress' })).toBeVisible();
@@ -87,8 +86,7 @@ test.describe('Lists and Cards', () => {
     await page.getByRole('button', { name: 'Add Card' }).click();
     await expect(page.locator('.card-title', { hasText: 'Card A' })).toBeVisible();
 
-    // The add card form stays open after adding, need to re-click
-    await page.getByText('+ Add a card').click();
+    // Form stays open after adding, just type the next title
     await page.getByPlaceholder('Enter a title for this card...').fill('Card B');
     await page.getByRole('button', { name: 'Add Card' }).click();
     await expect(page.locator('.card-title', { hasText: 'Card B' })).toBeVisible();

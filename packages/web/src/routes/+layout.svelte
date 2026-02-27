@@ -1,13 +1,12 @@
 <script lang="ts">
   import '../app.css';
   import { api } from '$lib/api';
-  import { goto } from '$app/navigation';
 
   let { data, children } = $props();
 
   async function logout() {
     await api('/auth/logout', { method: 'POST' });
-    goto('/login');
+    window.location.href = '/login';
   }
 </script>
 

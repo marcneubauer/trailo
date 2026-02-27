@@ -4,13 +4,13 @@ import { uniqueUser, registerUser, loginUser } from './helpers';
 test.describe('Authentication', () => {
   test('register a new account', async ({ page }) => {
     const user = uniqueUser();
-    await page.goto('/register');
+    await page.goto('/register', { waitUntil: 'networkidle' });
     await page.getByLabel('Email').fill(user.email);
     await page.getByLabel('Username').fill(user.username);
     await page.getByLabel('Password').fill(user.password);
     await page.getByRole('button', { name: 'Create account' }).click();
 
-    await page.waitForURL('/boards');
+    await page.waitForURL('/boards', { waitUntil: 'load' });
     await expect(page.getByText(user.username)).toBeVisible();
     await expect(page.getByText('Your Boards')).toBeVisible();
   });
@@ -18,9 +18,9 @@ test.describe('Authentication', () => {
   test('log out and log back in', async ({ page }) => {
     const user = await registerUser(page);
 
-    // Log out
+    // Log out (uses window.location.href)
     await page.getByRole('button', { name: 'Log out' }).click();
-    await page.waitForURL('/login');
+    await page.waitForURL('/login', { waitUntil: 'load' });
 
     // Log back in
     await loginUser(page, user);
@@ -38,10 +38,10 @@ test.describe('Authentication', () => {
 
     // Log out
     await page.getByRole('button', { name: 'Log out' }).click();
-    await page.waitForURL('/login');
+    await page.waitForURL('/login', { waitUntil: 'load' });
 
     // Try to register with the same email
-    await page.goto('/register');
+    await page.goto('/register', { waitUntil: 'networkidle' });
     await page.getByLabel('Email').fill(user.email);
     await page.getByLabel('Username').fill('different-user');
     await page.getByLabel('Password').fill(user.password);
@@ -55,7 +55,7 @@ test.describe('Authentication', () => {
 
     // Log out
     await page.getByRole('button', { name: 'Log out' }).click();
-    await page.waitForURL('/login');
+    await page.waitForURL('/login', { waitUntil: 'load' });
 
     // Try wrong password
     await page.getByLabel('Email').fill(user.email);

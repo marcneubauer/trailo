@@ -1,6 +1,6 @@
 <script lang="ts">
   import { api, ApiError } from '$lib/api';
-  import { goto } from '$app/navigation';
+  import { invalidateAll } from '$app/navigation';
 
   let email = $state('');
   let password = $state('');
@@ -17,7 +17,8 @@
         method: 'POST',
         body: JSON.stringify({ email, password }),
       });
-      goto('/boards');
+      await invalidateAll();
+      window.location.href = '/boards';
     } catch (err) {
       if (err instanceof ApiError) {
         error = err.message;

@@ -34,11 +34,19 @@ export const handle: Handle = async ({ event, resolve }) => {
       duplex: 'half' as any,
     });
 
-    return new Response(response.body, {
+    // Build headers manually — the Fetch API's Headers object strips Set-Cookie
+    const proxyHeaders = new Headers(response.headers);
+    const setCookies = response.headers.getSetCookie();
+    const res = new Response(response.body, {
       status: response.status,
       statusText: response.statusText,
-      headers: response.headers,
+      headers: proxyHeaders,
     });
+    // Re-append Set-Cookie headers that got stripped
+    for (const cookie of setCookies) {
+      res.headers.append('set-cookie', cookie);
+    }
+    return res;
   }
 
   return resolve(event);
