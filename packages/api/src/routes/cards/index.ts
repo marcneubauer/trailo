@@ -6,7 +6,7 @@ import {
   createCardSchema,
   updateCardSchema,
   moveCardSchema,
-} from '@trailo/shared/validation/card.js';
+} from '@kanbang/shared/validation/card.js';
 
 export default async function cardRoutes(fastify: FastifyInstance) {
   const cardService = new CardService(fastify.db);

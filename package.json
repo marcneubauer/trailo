@@ -1,11 +1,11 @@
 {
-  "name": "trailo",
+  "name": "kanbang",
   "private": true,
   "type": "module",
   "scripts": {
     "dev": "pnpm -r --parallel dev",
-    "dev:api": "pnpm --filter @trailo/api dev",
-    "dev:web": "pnpm --filter @trailo/web dev",
+    "dev:api": "pnpm --filter @kanbang/api dev",
+    "dev:web": "pnpm --filter @kanbang/web dev",
     "build": "pnpm -r build",
     "test": "vitest",
     "test:unit": "vitest run",
@@ -13,8 +13,8 @@
     "lint": "eslint packages/",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
-    "db:generate": "pnpm --filter @trailo/api db:generate",
-    "db:migrate": "pnpm --filter @trailo/api db:migrate",
+    "db:generate": "pnpm --filter @kanbang/api db:generate",
+    "db:migrate": "pnpm --filter @kanbang/api db:migrate",
     "typecheck": "pnpm -r typecheck"
   },
   "devDependencies": {

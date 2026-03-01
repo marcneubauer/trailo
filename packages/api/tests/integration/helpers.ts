@@ -12,7 +12,7 @@ export async function createTestApp() {
 
 export function getSessionCookie(response: any): string | undefined {
   const cookies = response.cookies as Array<{ name: string; value: string }>;
-  return cookies?.find((c: any) => c.name === 'trailo_session')?.value;
+  return cookies?.find((c: any) => c.name === 'kanbang_session')?.value;
 }
 
 export async function registerUser(
@@ -55,7 +55,7 @@ export async function loginUser(
 }
 
 export function authHeader(sessionCookie: string) {
-  return { cookie: `trailo_session=${sessionCookie}` };
+  return { cookie: `kanbang_session=${sessionCookie}` };
 }
 
 export async function createBoard(

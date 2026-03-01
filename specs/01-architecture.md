@@ -1,13 +1,13 @@
-# Trailo — Architecture
+# KanBang — Architecture
 
 ## Monorepo Layout
 
 ```
-trailo/
+kanbang/
 ├── packages/
-│   ├── shared/     @trailo/shared   — Types, Zod schemas, utilities
-│   ├── api/        @trailo/api      — Fastify REST API
-│   └── web/        @trailo/web      — SvelteKit frontend
+│   ├── shared/     @kanbang/shared   — Types, Zod schemas, utilities
+│   ├── api/        @kanbang/api      — Fastify REST API
+│   └── web/        @kanbang/web      — SvelteKit frontend
 ├── e2e/                              — Playwright E2E tests
 ├── specs/                            — Specification documents
 └── (root configs)                    — TS, ESLint, Prettier, Vitest, Docker
@@ -16,8 +16,8 @@ trailo/
 ## Package Dependency Graph
 
 ```
-@trailo/web  ──→  @trailo/shared
-@trailo/api  ──→  @trailo/shared
+@kanbang/web  ──→  @kanbang/shared
+@kanbang/api  ──→  @kanbang/shared
 ```
 
 `shared` has no internal dependencies. `api` and `web` are independent of each other.
@@ -70,7 +70,7 @@ Browser → SvelteKit client JS → Fastify API → SQLite
 
 - **web** (SvelteKit, adapter-node): Serves the frontend on port 3000. Proxies API calls to `http://api:3001` in server-side load functions.
 - **api** (Fastify): Serves the REST API on port 3001. Reads/writes the SQLite database file.
-- **SQLite volume**: A Docker named volume at `/app/data/trailo.db` shared only with the `api` service.
+- **SQLite volume**: A Docker named volume at `/app/data/kanbang.db` shared only with the `api` service.
 
 ## Environment Variables
 
@@ -81,7 +81,7 @@ Browser → SvelteKit client JS → Fastify API → SQLite
 | `API_PORT` | api | No | Port for Fastify (default: 3001) |
 | `API_HOST` | api | No | Bind host (default: 0.0.0.0) |
 | `RP_ID` | api | Yes | WebAuthn Relying Party ID (hostname) |
-| `RP_NAME` | api | No | WebAuthn display name (default: Trailo) |
+| `RP_NAME` | api | No | WebAuthn display name (default: KanBang) |
 | `RP_ORIGIN` | api | Yes | WebAuthn expected origin |
 | `CORS_ORIGIN` | api | No | Allowed CORS origin (default: http://localhost:5173) |
 | `API_URL` | web | Yes | Internal URL to reach the API |

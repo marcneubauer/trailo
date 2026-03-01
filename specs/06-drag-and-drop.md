@@ -1,4 +1,4 @@
-# Trailo — Drag-and-Drop Specification
+# KanBang — Drag-and-Drop Specification
 
 ## Library
 
@@ -81,7 +81,7 @@ When an item is dropped, we need to compute a new fractional index `position` ba
 ### Algorithm
 
 ```typescript
-import { generateKeyBetween } from '@trailo/shared/utils/fractional-index';
+import { generateKeyBetween } from '@kanbang/shared/utils/fractional-index';
 
 function computeNewPosition(items: { position: string }[], droppedIndex: number): string {
   const before = droppedIndex > 0 ? items[droppedIndex - 1].position : null;

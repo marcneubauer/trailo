@@ -1,4 +1,4 @@
-# Trailo — REST API Specification
+# KanBang — REST API Specification
 
 ## Base URL
 
@@ -8,7 +8,7 @@
 
 ## Authentication
 
-All endpoints except auth registration/login require a valid session cookie (`trailo_session`). Unauthenticated requests receive `401 Unauthorized`.
+All endpoints except auth registration/login require a valid session cookie (`kanbang_session`). Unauthenticated requests receive `401 Unauthorized`.
 
 ## Error Response Format
 
@@ -57,7 +57,7 @@ Register a new user with email and password.
   "user": { "id": "abc123", "email": "user@example.com", "username": "alice" }
 }
 ```
-Sets `trailo_session` cookie.
+Sets `kanbang_session` cookie.
 
 **Errors:** `409 CONFLICT` (email or username taken), `400 VALIDATION_ERROR`
 
@@ -77,7 +77,7 @@ Sets `trailo_session` cookie.
   "user": { "id": "abc123", "email": "user@example.com", "username": "alice" }
 }
 ```
-Sets `trailo_session` cookie.
+Sets `kanbang_session` cookie.
 
 **Errors:** `401 UNAUTHORIZED` (invalid credentials)
 
@@ -141,7 +141,7 @@ Verify WebAuthn authentication. No auth required.
   "user": { "id": "abc123", "email": "user@example.com", "username": "alice" }
 }
 ```
-Sets `trailo_session` cookie.
+Sets `kanbang_session` cookie.
 
 ---
 

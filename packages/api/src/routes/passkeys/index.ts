@@ -1,7 +1,7 @@
 import type { FastifyInstance } from 'fastify';
 import { COOKIE_NAME, SESSION_MAX_AGE } from '../../plugins/auth.js';
 
-const CHALLENGE_COOKIE = 'trailo_webauthn_challenge';
+const CHALLENGE_COOKIE = 'kanbang_webauthn_challenge';
 const CHALLENGE_MAX_AGE = 5 * 60; // 5 minutes
 
 function setChallengeCookie(reply: any, challenge: string) {

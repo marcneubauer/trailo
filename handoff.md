@@ -1,8 +1,8 @@
-# Trailo — Work Handoff Document
+# KanBang — Work Handoff Document
 
 ## Project Summary
 
-Trailo is a self-hosted personal Trello clone built with Fastify 5 (backend), SvelteKit 2/Svelte 5 (frontend), SQLite via better-sqlite3 + Drizzle ORM, pnpm workspaces monorepo. See `CLAUDE.md` for conventions and `specs/` for full specifications.
+KanBang is a self-hosted personal Trello clone built with Fastify 5 (backend), SvelteKit 2/Svelte 5 (frontend), SQLite via better-sqlite3 + Drizzle ORM, pnpm workspaces monorepo. See `CLAUDE.md` for conventions and `specs/` for full specifications.
 
 ---
 

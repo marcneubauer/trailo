@@ -1,5 +1,5 @@
 import type { FastifyInstance } from 'fastify';
-import { registerSchema, loginSchema } from '@trailo/shared/validation/auth.js';
+import { registerSchema, loginSchema } from '@kanbang/shared/validation/auth.js';
 import { COOKIE_NAME, SESSION_MAX_AGE } from '../../plugins/auth.js';
 
 function setCookie(reply: any, sessionId: string) {

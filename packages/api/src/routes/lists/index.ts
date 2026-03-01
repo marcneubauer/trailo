@@ -5,7 +5,7 @@ import {
   createListSchema,
   updateListSchema,
   reorderListSchema,
-} from '@trailo/shared/validation/list.js';
+} from '@kanbang/shared/validation/list.js';
 
 export default async function listRoutes(fastify: FastifyInstance) {
   const listService = new ListService(fastify.db);

@@ -2,8 +2,8 @@ import { eq, and, asc, desc } from 'drizzle-orm';
 import { nanoid } from 'nanoid';
 import type { Database } from '../db/index.js';
 import { lists, boards } from '../db/schema.js';
-import { generateKeyBetween } from '@trailo/shared/utils/fractional-index.js';
-import type { CreateListInput, UpdateListInput } from '@trailo/shared/validation/list.js';
+import { generateKeyBetween } from '@kanbang/shared/utils/fractional-index.js';
+import type { CreateListInput, UpdateListInput } from '@kanbang/shared/validation/list.js';
 
 export class ListService {
   constructor(private db: Database) {}

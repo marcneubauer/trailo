@@ -4,7 +4,7 @@ import { createTestApp, registerUser, authHeader } from './helpers.js';
 
 function getChallengeCookie(response: any): string | undefined {
   const cookies = response.cookies as Array<{ name: string; value: string }>;
-  return cookies?.find((c: any) => c.name === 'trailo_webauthn_challenge')?.value;
+  return cookies?.find((c: any) => c.name === 'kanbang_webauthn_challenge')?.value;
 }
 
 describe('Passkey routes', () => {
@@ -33,7 +33,7 @@ describe('Passkey routes', () => {
       expect(body.options).toBeDefined();
       expect(body.options.challenge).toBeDefined();
       expect(body.options.rp).toBeDefined();
-      expect(body.options.rp.name).toBe('Trailo');
+      expect(body.options.rp.name).toBe('KanBang');
       expect(body.options.user).toBeDefined();
       expect(body.options.pubKeyCredParams).toBeDefined();
 
@@ -77,7 +77,7 @@ describe('Passkey routes', () => {
         url: '/api/v1/passkeys/register/verify',
         headers: {
           ...authHeader(sessionCookie),
-          cookie: `trailo_session=${sessionCookie}; trailo_webauthn_challenge=${challenge}`,
+          cookie: `kanbang_session=${sessionCookie}; kanbang_webauthn_challenge=${challenge}`,
         },
         payload: {
           id: 'fake-id',
@@ -144,7 +144,7 @@ describe('Passkey routes', () => {
         method: 'POST',
         url: '/api/v1/passkeys/login/verify',
         headers: {
-          cookie: `trailo_webauthn_challenge=${challenge}`,
+          cookie: `kanbang_webauthn_challenge=${challenge}`,
         },
         payload: {
           id: 'non-existent-credential',

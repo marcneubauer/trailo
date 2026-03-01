@@ -72,7 +72,7 @@
 
 <div class="auth-page">
   <div class="auth-card">
-    <h1>Sign in to Trailo</h1>
+    <h1>Sign in to KanBang</h1>
 
     {#if error}
       <div class="error">{error}</div>

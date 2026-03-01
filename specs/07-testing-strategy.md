@@ -1,4 +1,4 @@
-# Trailo — Testing Strategy
+# KanBang — Testing Strategy
 
 ## Test Pyramid
 

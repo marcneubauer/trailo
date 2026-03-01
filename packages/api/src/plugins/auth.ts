@@ -20,7 +20,7 @@ declare module 'fastify' {
   }
 }
 
-const COOKIE_NAME = 'trailo_session';
+const COOKIE_NAME = 'kanbang_session';
 const SESSION_MAX_AGE = 30 * 24 * 60 * 60; // 30 days in seconds
 
 export { COOKIE_NAME, SESSION_MAX_AGE };

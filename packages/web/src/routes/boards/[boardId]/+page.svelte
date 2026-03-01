@@ -3,7 +3,7 @@
   import { invalidateAll } from '$app/navigation';
   import { goto } from '$app/navigation';
   import { dndzone } from 'svelte-dnd-action';
-  import { generateKeyBetween } from '@trailo/shared/utils/fractional-index';
+  import { generateKeyBetween } from '@kanbang/shared/utils/fractional-index';
 
   let { data } = $props();
 

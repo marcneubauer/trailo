@@ -1,4 +1,4 @@
-# Trailo — Database Schema
+# KanBang — Database Schema
 
 ## Entity-Relationship Diagram
 
@@ -120,7 +120,7 @@ The `generateKeyBetween(a, b)` function computes a new string that sorts between
 
 ### Implementation
 
-We use the `fractional-indexing` npm package algorithm, implemented in `@trailo/shared` at `src/utils/fractional-index.ts` for use by both API and frontend.
+We use the `fractional-indexing` npm package algorithm, implemented in `@kanbang/shared` at `src/utils/fractional-index.ts` for use by both API and frontend.
 
 ## Migration Strategy
 

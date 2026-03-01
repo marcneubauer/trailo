@@ -1,6 +1,6 @@
 import type { FastifyInstance } from 'fastify';
 import { BoardService } from '../../services/board.service.js';
-import { createBoardSchema, updateBoardSchema } from '@trailo/shared/validation/board.js';
+import { createBoardSchema, updateBoardSchema } from '@kanbang/shared/validation/board.js';
 
 export default async function boardRoutes(fastify: FastifyInstance) {
   const boardService = new BoardService(fastify.db);

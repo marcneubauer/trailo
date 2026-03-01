@@ -12,7 +12,7 @@
 
 {#if data.user}
   <nav class="nav">
-    <a href="/boards" class="nav-brand">Trailo</a>
+    <a href="/boards" class="nav-brand">KanBang</a>
     <div class="nav-right">
       <span class="nav-user">{data.user.username}</span>
       <a href="/settings" class="nav-link">Settings</a>

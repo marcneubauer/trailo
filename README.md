@@ -1,4 +1,4 @@
-# Trailo
+# KanBang
 
 A self-hosted personal Trello clone — kanban boards with drag-and-drop, built for single-user use.
 
@@ -58,11 +58,11 @@ The app is accessible at `http://localhost:3000`.
 ## Project Structure
 
 ```
-trailo/
+kanbang/
 ├── packages/
-│   ├── shared/    # @trailo/shared — types, Zod schemas, fractional-index util
-│   ├── api/       # @trailo/api — Fastify REST API (port 3001)
-│   └── web/       # @trailo/web — SvelteKit frontend (port 5173 dev / 3000 prod)
+│   ├── shared/    # @kanbang/shared — types, Zod schemas, fractional-index util
+│   ├── api/       # @kanbang/api — Fastify REST API (port 3001)
+│   └── web/       # @kanbang/web — SvelteKit frontend (port 5173 dev / 3000 prod)
 ├── e2e/           # Playwright E2E tests
 ├── specs/         # Specification documents
 ├── docker-compose.yml
@@ -88,7 +88,7 @@ See [.env.example](.env.example) for all available configuration options.
 
 | Variable | Default | Description |
 |----------|---------|-------------|
-| `DATABASE_URL` | `./trailo.db` | SQLite database file path |
+| `DATABASE_URL` | `./kanbang.db` | SQLite database file path |
 | `SESSION_SECRET` | — | Secret for session management (min 32 chars) |
 | `RP_ID` | `localhost` | WebAuthn Relying Party ID (your domain) |
 | `RP_ORIGIN` | `http://localhost:3000` | WebAuthn origin URL |

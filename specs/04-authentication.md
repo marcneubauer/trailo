@@ -1,8 +1,8 @@
-# Trailo — Authentication Specification
+# KanBang — Authentication Specification
 
 ## Overview
 
-Trailo supports two authentication methods:
+KanBang supports two authentication methods:
 1. **Password** — email + password registration and login (primary)
 2. **Passkeys** — WebAuthn/FIDO2 passwordless authentication (optional, added to existing account)
 
@@ -14,7 +14,7 @@ Sessions are managed via database-backed cookies.
 
 | Property | Value |
 |----------|-------|
-| Name | `trailo_session` |
+| Name | `kanbang_session` |
 | HttpOnly | true |
 | Secure | true in production, false in dev |
 | SameSite | Lax |
@@ -24,7 +24,7 @@ Sessions are managed via database-backed cookies.
 ### Session Lifecycle
 
 1. **Creation**: On successful registration or login, a new session row is created in the `sessions` table with a 30-day expiry. The session ID is set as the cookie value.
-2. **Validation**: On each authenticated request, the auth plugin reads the `trailo_session` cookie, looks up the session in the database, and checks expiry. If valid, `request.user` is decorated with the user object.
+2. **Validation**: On each authenticated request, the auth plugin reads the `kanbang_session` cookie, looks up the session in the database, and checks expiry. If valid, `request.user` is decorated with the user object.
 3. **Sliding expiry**: On each valid request, the session's `expires_at` is extended by 30 days from now.
 4. **Revocation**: On logout, the session row is deleted and the cookie is cleared.
 5. **Cleanup**: Expired sessions can be cleaned up periodically (cron or on-demand).
@@ -32,7 +32,7 @@ Sessions are managed via database-backed cookies.
 ### Auth Plugin (Fastify)
 
 The auth plugin is a Fastify decorator that:
-1. Reads `trailo_session` from cookies
+1. Reads `kanbang_session` from cookies
 2. Queries `sessions` JOIN `users` to get user data
 3. Rejects with 401 if session is missing, expired, or invalid
 4. Decorates `request.user` with `{ id, email, username }`
@@ -53,7 +53,7 @@ Client                        Server
   │                              │── Hash password (argon2id)
   │                              │── Create user row
   │                              │── Create session row
-  │◄── 201 { user } ────────────│── Set trailo_session cookie
+  │◄── 201 { user } ────────────│── Set kanbang_session cookie
   │    + Set-Cookie              │
 ```
 
@@ -82,7 +82,7 @@ Client                        Server
   │   { email, password }        │── Look up user by email
   │                              │── Verify password (argon2.verify)
   │                              │── Create session row
-  │◄── 200 { user } ────────────│── Set trailo_session cookie
+  │◄── 200 { user } ────────────│── Set kanbang_session cookie
   │    + Set-Cookie              │
 ```
 
@@ -119,7 +119,7 @@ Client                           Server
 
 ```typescript
 generateRegistrationOptions({
-  rpName: config.rp.name,           // "Trailo"
+  rpName: config.rp.name,           // "KanBang"
   rpID: config.rp.id,               // "localhost" or domain
   userID: isoUint8Array(user.id),
   userName: user.email,
@@ -156,13 +156,13 @@ Client                           Server
   │                                 │── verifyAuthenticationResponse()
   │                                 │── Update credential counter
   │                                 │── Create session
-  │◄── 200 { user } ───────────────│── Set trailo_session cookie
+  │◄── 200 { user } ───────────────│── Set kanbang_session cookie
   │    + Set-Cookie                 │
 ```
 
 ### Challenge Storage for Login
 
-Since passkey login does not require an existing session, the challenge is stored in a short-lived, HttpOnly cookie (`trailo_webauthn_challenge`) with a 5-minute expiry.
+Since passkey login does not require an existing session, the challenge is stored in a short-lived, HttpOnly cookie (`kanbang_webauthn_challenge`) with a 5-minute expiry.
 
 ---
 

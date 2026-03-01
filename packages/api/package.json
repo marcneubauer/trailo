@@ -1,5 +1,5 @@
 {
-  "name": "@trailo/api",
+  "name": "@kanbang/api",
   "version": "0.0.1",
   "private": true,
   "type": "module",
@@ -16,7 +16,7 @@
     "@fastify/cookie": "^11.0.0",
     "@fastify/cors": "^10.0.0",
     "@simplewebauthn/server": "^13.0.0",
-    "@trailo/shared": "workspace:*",
+    "@kanbang/shared": "workspace:*",
     "argon2": "^0.41.0",
     "better-sqlite3": "^11.0.0",
     "drizzle-orm": "^0.38.0",

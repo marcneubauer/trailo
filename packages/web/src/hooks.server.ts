@@ -4,12 +4,12 @@ const API_URL = process.env.API_URL || 'http://localhost:3001';
 
 export const handle: Handle = async ({ event, resolve }) => {
   // Forward the session cookie to the API to check auth
-  const sessionCookie = event.cookies.get('trailo_session');
+  const sessionCookie = event.cookies.get('kanbang_session');
 
   if (sessionCookie) {
     try {
       const res = await fetch(`${API_URL}/api/v1/auth/me`, {
-        headers: { cookie: `trailo_session=${sessionCookie}` },
+        headers: { cookie: `kanbang_session=${sessionCookie}` },
       });
       if (res.ok) {
         const { user } = await res.json();

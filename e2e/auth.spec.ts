@@ -30,7 +30,7 @@ test.describe('Authentication', () => {
   test('access protected page without auth redirects to login', async ({ page }) => {
     await page.goto('/boards');
     await page.waitForURL('/login');
-    await expect(page.getByText('Sign in to Trailo')).toBeVisible();
+    await expect(page.getByText('Sign in to KanBang')).toBeVisible();
   });
 
   test('register with duplicate email shows error', async ({ page }) => {

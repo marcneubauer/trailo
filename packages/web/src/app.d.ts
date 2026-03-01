@@ -1,4 +1,4 @@
-import type { AuthUser } from '@trailo/shared';
+import type { AuthUser } from '@kanbang/shared';
 
 declare global {
   namespace App {

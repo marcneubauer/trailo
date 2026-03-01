@@ -41,12 +41,12 @@ importers:
       '@fastify/cors':
         specifier: ^10.0.0
         version: 10.1.0
+      '@kanbang/shared':
+        specifier: workspace:*
+        version: link:../shared
       '@simplewebauthn/server':
         specifier: ^13.0.0
         version: 13.2.3
-      '@trailo/shared':
-        specifier: workspace:*
-        version: link:../shared
       argon2:
         specifier: ^0.41.0
         version: 0.41.1
@@ -94,12 +94,12 @@ importers:
 
   packages/web:
     dependencies:
+      '@kanbang/shared':
+        specifier: workspace:*
+        version: link:../shared
       '@simplewebauthn/browser':
         specifier: ^13.0.0
         version: 13.2.2
-      '@trailo/shared':
-        specifier: workspace:*
-        version: link:../shared
       svelte-dnd-action:
         specifier: ^0.9.0
         version: 0.9.69(svelte@5.53.5)

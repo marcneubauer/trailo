@@ -16,7 +16,7 @@ COPY --from=deps /app/packages/web/node_modules ./packages/web/node_modules
 COPY pnpm-workspace.yaml package.json pnpm-lock.yaml .npmrc tsconfig.base.json ./
 COPY packages/shared/ packages/shared/
 COPY packages/web/ packages/web/
-RUN pnpm --filter @trailo/web build
+RUN pnpm --filter @kanbang/web build
 
 FROM node:22-slim AS runner
 WORKDIR /app

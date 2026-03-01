@@ -3,7 +3,7 @@ import { hash, verify } from 'argon2';
 import { nanoid } from 'nanoid';
 import type { Database } from '../db/index.js';
 import { users, sessions } from '../db/schema.js';
-import type { RegisterInput, LoginInput } from '@trailo/shared/validation/auth.js';
+import type { RegisterInput, LoginInput } from '@kanbang/shared/validation/auth.js';
 
 const SESSION_DURATION_MS = 30 * 24 * 60 * 60 * 1000; // 30 days
 

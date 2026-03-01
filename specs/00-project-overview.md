@@ -1,8 +1,8 @@
-# Trailo — Project Overview
+# KanBang — Project Overview
 
 ## Goals
 
-Trailo is a personal, self-hosted Trello clone for managing tasks using a kanban board interface. It prioritizes simplicity, speed, and full ownership of data.
+KanBang is a personal, self-hosted Trello clone for managing tasks using a kanban board interface. It prioritizes simplicity, speed, and full ownership of data.
 
 ## Scope (v1)
 

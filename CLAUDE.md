@@ -1,8 +1,8 @@
-# Trailo — Claude Code Project Guide
+# KanBang — Claude Code Project Guide
 
 ## Overview
 
-Trailo is a self-hosted personal Trello clone — a kanban board app with boards, lists, and cards. Drag-and-drop reordering uses fractional indexing.
+KanBang is a self-hosted personal Trello clone — a kanban board app with boards, lists, and cards. Drag-and-drop reordering uses fractional indexing.
 
 ## Tech Stack
 
@@ -19,11 +19,11 @@ Trailo is a self-hosted personal Trello clone — a kanban board app with boards
 ## Monorepo Structure
 
 ```
-trailo/
+kanbang/
 ├── packages/
-│   ├── shared/    # @trailo/shared — types, Zod schemas, fractional-index util
-│   ├── api/       # @trailo/api — Fastify backend (port 3001)
-│   └── web/       # @trailo/web — SvelteKit frontend (port 5173)
+│   ├── shared/    # @kanbang/shared — types, Zod schemas, fractional-index util
+│   ├── api/       # @kanbang/api — Fastify backend (port 3001)
+│   └── web/       # @kanbang/web — SvelteKit frontend (port 5173)
 ├── e2e/           # Playwright E2E tests
 ├── specs/         # 8 specification documents (00–07)
 └── playwright.config.ts
@@ -69,7 +69,7 @@ pnpm db:migrate                  # Drizzle-kit apply migration
 - **Svelte 5 runes**: Use `$state()`, `$props()`, `$derived()` — NOT legacy `let`/`export let` reactive declarations
 - **Event handlers**: Use `onclick={fn}` — NOT `on:click={fn}`. For event modifiers, use inline: `onclick={(e) => { e.stopPropagation(); handler(); }}`
 - **API proxy**: `hooks.server.ts` proxies `/api/*` requests from SvelteKit to Fastify backend
-- **Auth check**: `hooks.server.ts` reads `trailo_session` cookie on every request and sets `locals.user`
+- **Auth check**: `hooks.server.ts` reads `kanbang_session` cookie on every request and sets `locals.user`
 - **Client API**: `$lib/api.ts` typed fetch wrapper that calls `/api/v1/...` (proxied to backend)
 
 ### Database
@@ -81,7 +81,7 @@ pnpm db:migrate                  # Drizzle-kit apply migration
 
 ### Auth
 
-- Cookie-based sessions (`trailo_session`, HttpOnly, 30-day sliding expiry)
+- Cookie-based sessions (`kanbang_session`, HttpOnly, 30-day sliding expiry)
 - argon2id password hashing
 - Session stored in DB, validated on each request
 

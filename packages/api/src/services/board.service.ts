@@ -2,7 +2,7 @@ import { eq, and, asc } from 'drizzle-orm';
 import { nanoid } from 'nanoid';
 import type { Database } from '../db/index.js';
 import { boards, lists, cards } from '../db/schema.js';
-import type { CreateBoardInput, UpdateBoardInput } from '@trailo/shared/validation/board.js';
+import type { CreateBoardInput, UpdateBoardInput } from '@kanbang/shared/validation/board.js';
 
 export class BoardService {
   constructor(private db: Database) {}

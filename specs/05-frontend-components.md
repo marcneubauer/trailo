@@ -1,4 +1,4 @@
-# Trailo — Frontend Components Specification
+# KanBang — Frontend Components Specification
 
 ## Page Structure
 
@@ -17,7 +17,7 @@
 ```
 +layout.svelte
 ├── Nav
-│   ├── Logo ("Trailo")
+│   ├── Logo ("KanBang")
 │   ├── (spacer)
 │   └── UserMenu (username + logout button)
 └── {children}
