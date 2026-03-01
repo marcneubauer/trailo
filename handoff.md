@@ -2,7 +2,7 @@
 
 ## Project Summary
 
-KanBang is a self-hosted personal Trello clone built with Fastify 5 (backend), SvelteKit 2/Svelte 5 (frontend), SQLite via better-sqlite3 + Drizzle ORM, pnpm workspaces monorepo. See `CLAUDE.md` for conventions and `specs/` for full specifications.
+KanBang is a self-hosted personal Trello clone built with Fastify 5 (backend), SvelteKit 2/Svelte 5 (frontend), SQLite via better-sqlite3 + Drizzle ORM, pnpm workspaces monorepo. See `CLAUDE.md` for conventions and `docs/specs/` for full specifications.
 
 ---
 
@@ -11,7 +11,7 @@ KanBang is a self-hosted personal Trello clone built with Fastify 5 (backend), S
 | Phase | Description | Status |
 |-------|-------------|--------|
 | 0 | Project scaffolding (git, pnpm workspace, configs) | **Done** |
-| 1 | 8 specification documents in `specs/` | **Done** |
+| 1 | 8 specification documents in `docs/specs/` | **Done** |
 | 2 | Database schema + migrations + fractional indexing | **Done** |
 | 3a | Password auth (argon2 + sessions) | **Done** |
 | 3b | Passkey auth (@simplewebauthn) | **Done** |
@@ -104,7 +104,7 @@ KanBang is a self-hosted personal Trello clone built with Fastify 5 (backend), S
 
 ## Specifications
 
-All specs in `specs/` serve as the source of truth:
+All specs in `docs/specs/` serve as the source of truth:
 
 | File | Content |
 |------|---------|

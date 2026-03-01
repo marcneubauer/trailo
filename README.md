@@ -64,7 +64,9 @@ kanbang/
 │   ├── api/       # @kanbang/api — Fastify REST API (port 3001)
 │   └── web/       # @kanbang/web — SvelteKit frontend (port 5173 dev / 3000 prod)
 ├── e2e/           # Playwright E2E tests
-├── specs/         # Specification documents
+├── docs/
+│   ├── specs/     # Specification documents
+│   └── plans/     # Planning documents
 ├── docker-compose.yml
 ├── Dockerfile.api
 └── Dockerfile.web

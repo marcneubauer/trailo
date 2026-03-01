@@ -25,7 +25,9 @@ kanbang/
 │   ├── api/       # @kanbang/api — Fastify backend (port 3001)
 │   └── web/       # @kanbang/web — SvelteKit frontend (port 5173)
 ├── e2e/           # Playwright E2E tests
-├── specs/         # 8 specification documents (00–07)
+├── docs/
+│   ├── specs/     # 8 specification documents (00–07)
+│   └── plans/     # Planning documents
 └── playwright.config.ts
 ```
 

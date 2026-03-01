@@ -9,7 +9,7 @@ kanbang/
 │   ├── api/        @kanbang/api      — Fastify REST API
 │   └── web/        @kanbang/web      — SvelteKit frontend
 ├── e2e/                              — Playwright E2E tests
-├── specs/                            — Specification documents
+├── docs/specs/                       — Specification documents
 └── (root configs)                    — TS, ESLint, Prettier, Vitest, Docker
 ```
 
